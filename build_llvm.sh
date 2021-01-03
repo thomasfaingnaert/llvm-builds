@@ -9,6 +9,9 @@ pushd llvm-project
 # Get friendly version string
 FRIENDLY_VERSION=$(git describe)
 
+# Remove 'llvmorg-' prefix
+FRIENDLY_VERSION="${FRIENDLY_VERSION#llvmorg-}"
+
 mkdir build
 cd build
 
@@ -42,8 +45,11 @@ if [[ "${BUILD_TYPE}" == "Debug" ]]; then
     CMAKE_CONFIGURATION="${CMAKE_CONFIGURATION} -DLLVM_OPTIMIZED_TABLEGEN=ON"
 fi
 
+# Set the filename of the artifacts archive
+artifacts_name="clang+llvm-${BUILD_TYPE}+Asserts-${FRIENDLY_VERSION}-$(uname -m)-linux-gnu-ubuntu-20.04"
+
 # Set install prefix
-CMAKE_CONFIGURATION="${CMAKE_CONFIGURATION} -DCMAKE_INSTALL_PREFIX=/artifacts"
+CMAKE_CONFIGURATION="${CMAKE_CONFIGURATION} -DCMAKE_INSTALL_PREFIX=/${artifacts_name}"
 
 cmake -GNinja ${CMAKE_CONFIGURATION} ../llvm
 
@@ -53,8 +59,8 @@ cmake --build . --target install
 popd
 
 # Compress artifacts to save space
-7z a -t7z -m0=lzma2 -mx=9 /llvm+clang-${BUILD_TYPE}+Asserts-${FRIENDLY_VERSION}-linux.7z /artifacts
+7z a -t7z -m0=lzma2 -mx=9 "/${artifacts_name}.7z" "/${artifacts_name}"
 
 # Cleanup
 rm -rf llvm-project
-rm -rf /artifacts
+rm -rf "/${artifacts_name}"

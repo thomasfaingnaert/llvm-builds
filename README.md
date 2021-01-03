@@ -1,6 +1,6 @@
-# Automated LLVM+Clang assertions builds
+# Automated Clang+LLVM assertions builds
 
-This repository automatically builds LLVM+Clang binary releases with assertions enabled (`-DLLVM_ENABLE_ASSERTIONS=ON`).
+This repository automatically builds Clang+LLVM binary releases with assertions enabled (`-DLLVM_ENABLE_ASSERTIONS=ON`).
 It is heavily inspired by https://github.com/clangd/clangd.
 
 This repository does not contain the source of LLVM itself.
