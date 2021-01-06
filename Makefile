@@ -1,4 +1,4 @@
-LLVM_VERSION=llvmorg-11.0.0
+LLVM_VERSION=main
 
 help:
 	@echo "Usage:"

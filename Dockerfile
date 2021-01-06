@@ -13,7 +13,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 
 # Arguments
 ARG BUILD_TYPE=Release
-ARG LLVM_VERSION=llvmorg-11.0.0
+ARG LLVM_VERSION=main
 
 # Build LLVM
 COPY build_llvm.sh /
