@@ -20,8 +20,8 @@ The artifacts of the build are available as `*.7z` files.
 You can customise the LLVM version to build by setting `LLVM_VERSION`:
 
 ```bash
-make debug LLVM_VERSION=master      # debug build
-make release LLVM_VERSION=master    # release build
+make debug LLVM_VERSION=main      # debug build
+make release LLVM_VERSION=main    # release build
 ```
 
 `LLVM_VERSION` can be anything that `git clone --branch` accepts, i.e. a branch, commit, tag, ...
